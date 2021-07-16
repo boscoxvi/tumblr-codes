@@ -24,7 +24,7 @@ function singularLightbox(selector) {
     if (typeof selector === "string") { var posts = document.querySelectorAll(selector); } else { var posts = selector; }
     var figures = [];
     for (i = 0; i < posts.length; i++) {
-        var figure = posts[i].querySelectorAll("*:not(." + npfOptions.generatedPhotosetContainerClass + "):not(." + npfOptions.rowClass + ") > figure:not(.tmblr-panorama) img");
+        var figure = posts[i].querySelectorAll("*:not(." + npfOptions.generatedPhotosetContainerClass + "):not(." + npfOptions.rowClass + ") > figure:not(.tmblr-panorama) > img");
         if (figure.length > 0) { for (j = 0; j < figure.length; j++) { figures.push(figure[j]); } }
     }
     
