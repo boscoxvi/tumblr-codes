@@ -708,16 +708,16 @@ LIKE BUTTON by mikedidthis(Stack Overflow) on https://stackoverflow.com/question
             #blog_portrait img, .tmblr-full img, .tmblr-full, .tmblr-embed, .npf-link-block, .ask_container { border-radius:5px; }
             
             .npf_photoset .tmblr-full, .npf_photoset .tmblr-full img { border-radius:0; }
-            .npf_photoset > .npf_row:first-child .tmblr-full:first-of-type, .npf_photoset > .tmblr-full:first-child { border-top-left-radius:5px; }
-            .npf_photoset > .npf_row:first-child .tmblr-full:last-of-type, .npf_photoset > .tmblr-full:first-child { border-top-right-radius:5px; }
-            .npf_photoset > .npf_row:last-child .tmblr-full:first-of-type, .npf_photoset > .tmblr-full:last-child { border-bottom-left-radius:5px; }
-            .npf_photoset > .npf_row:last-child .tmblr-full:last-of-type, .npf_photoset > .tmblr-full:last-child { border-bottom-right-radius:5px; }
+            .npf_photoset .npf_row:first-child .tmblr-full:first-of-type, .npf_photoset > .tmblr-full:first-child { border-top-left-radius:5px; }
+            .npf_photoset .npf_row:first-child .tmblr-full:last-of-type, .npf_photoset > .tmblr-full:first-child { border-top-right-radius:5px; }
+            .npf_photoset .npf_row:last-child .tmblr-full:first-of-type, .npf_photoset > .tmblr-full:last-child { border-bottom-left-radius:5px; }
+            .npf_photoset .npf_row:last-child .tmblr-full:last-of-type, .npf_photoset > .tmblr-full:last-child { border-bottom-right-radius:5px; }
             
             .circle_inner, ol.notes li.note img.avatar { border-radius:100%; }
             .block_label { border-radius:1em; }
             
             .caption_block:first-child .caption_content > .tmblr-full:not([data-tumblr-attribution]):first-child img { border-radius:0; }
-            .caption_block:first-child .caption_content > .tmblr-full[data-tumblr-attribution]:first-child img, .caption_block:first-child .caption_content > .tmblr-full:first-child, .caption_block:first-child .caption_content > .npf-link-block:first-child, .caption_block:first-child .caption_content > .tmblr-embed:first-child, .caption_block:first-child .caption_content > .npf_photoset:first-child > .npf_row:first-child .tmblr-full:first-of-type, .caption_block:first-child .caption_content > .npf_photoset:first-child > .tmblr-full:first-child, .caption_block:first-child .caption_content > .npf_photoset:first-child > .npf_row:first-child .tmblr-full:last-of-type, .caption_block:first-child .caption_content > .npf_photoset:first-child > .tmblr-full:first-child { border-top-left-radius:0; border-top-right-radius:0; }
+            .caption_block:first-child .caption_content > .tmblr-full[data-tumblr-attribution]:first-child img, .caption_block:first-child .caption_content > .tmblr-full:first-child, .caption_block:first-child .caption_content > .npf-link-block:first-child, .caption_block:first-child .caption_content > .tmblr-embed:first-child, .caption_block:first-child .caption_content > .npf_photoset:first-child > .npf_row:first-child .tmblr-full:first-of-type, .caption_block:first-child .caption_content > .npf_photoset:first-child > .tmblr-full:first-child, .caption_block:first-child .caption_content > .npf_photoset:first-child .npf_row:first-child .tmblr-full:last-of-type, .caption_block:first-child .caption_content > .npf_photoset:first-child > .tmblr-full:first-child { border-top-left-radius:0; border-top-right-radius:0; }
             
             /* link decoration */
             
@@ -1082,97 +1082,18 @@ LIKE BUTTON by mikedidthis(Stack Overflow) on https://stackoverflow.com/question
         </div>
         
         <!-- IFRAME RESIZER -->
-        
-        <script>
-            var iframeFunctionAttached = false;
-            
-            function resizeIframes(selector) {
-                if (typeof selector === "string") { var postCollection = document.querySelectorAll(selector); } else { var postCollection = selector; }
-                
-                function hasClass(element, desiredClass) { return (new RegExp("^" + desiredClass + " ").test(element.className) || new RegExp(" " + desiredClass + "$").test(element.className) || new RegExp(" " + desiredClass + " ").test(element.className) || new RegExp("^" + desiredClass + "$").test(element.className)); }
-                
-                function actuallyResizeIframes() {
-                    var processedIframes = document.getElementsByClassName("iframe_resizer");
-                    for (j = 0; j < processedIframes.length; j++) {
-                        if (!hasClass(processedIframes[j], "tumblr_audio_player") && !hasClass(processedIframes[j], "instagram-media")) {
-                            var iframeWidth = processedIframes[j].getAttribute("width");
-                            var iframeFinalWidth = processedIframes[j].parentNode.clientWidth;
-                            if (hasClass(processedIframes[j], "spotify_audio_player")) { processedIframes[j].setAttribute("height", iframeFinalWidth + 80); } else { processedIframes[j].setAttribute("height", processedIframes[j].getAttribute("height") * (iframeFinalWidth / iframeWidth)); }
-                            processedIframes[j].setAttribute("width", iframeFinalWidth);
-                        }
-                    }
-                }
-            
-                for (i = 0; i < postCollection.length; i++) {
-                    var iframes = postCollection[i].querySelectorAll(".tmblr-full iframe");
-                    if (iframes.length > 0) {
-                        for (j = 0; j < iframes.length; j++) { iframes[j].className += " iframe_resizer"; }
-                        actuallyResizeIframes();
-                        if (iframeFunctionAttached === false) { window.addEventListener("resize", actuallyResizeIframes, false); } iframeFunctionAttached = true;
-                    }
-                }
-            }
-        </script>
+        <script src="https://cdn.jsdelivr.net/gh/boscoxvi/tumblr-codes/common/resize-iframes.js"></script>
         
         <!-- NPF PHOTOSETS -->
-
-        <script src="https://static.tumblr.com/xkippcr/9dfq4y8w7/npfphotosets.js"></script>
-        <link href="https://static.tumblr.com/xkippcr/naiq4y8wk/npfphotosetstyle.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/gh/boscoxvi/npfphotosets/npfphotosets.js"></script>
+        <link href="https://cdn.jsdelivr.net/gh/boscoxvi/npfphotosets/npfphotosetstyle.css" rel="stylesheet" type="text/css"/>
         
-        <!-- SINGULAR LIGHTBOX -->
-        
-        <script>
-            function singularLightbox(selector) {
-                function addLightbox() {
-                    if (event.type === "click" || (event.type === "keypress" && (event.key === "Enter" || event.which === 13))) {
-                        var photo = this;
-                        if (!photo.getAttribute("data-highres")) {
-                            var orgSrc = photo.src.slice(0, photo.src.lastIndexOf("."));
-                            if (orgSrc.lastIndexOf("_") !== -1) {
-                                orgSrc = orgSrc.slice(0, (orgSrc.lastIndexOf("_") + 1));
-                                var imgFormat = photo.src.slice(photo.src.lastIndexOf("."));
-                                highres = orgSrc + 1280 + imgFormat;
-                            } else { highres = photo.src; }
-                            photo.setAttribute("data-highres", highres);
-                        }
-                        
-                        Tumblr.Lightbox.init([{ 
-                            "width": photo.getAttribute("data-orig-width"),
-                            "height": photo.getAttribute("data-orig-height"),
-                            "low_res": photo.src,
-                            "high_res": photo.getAttribute("data-highres")
-                        }], 1);
-                    }
-                }
-                
-                if (typeof selector === "string") { var posts = document.querySelectorAll(selector); } else { var posts = selector; }
-                var figures = [];
-                for (i = 0; i < posts.length; i++) {
-                    var figure = posts[i].querySelectorAll("*:not(." + npfOptions.generatedPhotosetContainerClass + "):not(." + npfOptions.rowClass + ") > figure:not(.tmblr-panorama) img");
-                    if (figure.length > 0) { for (j = 0; j < figure.length; j++) { figures.push(figure[j]); } }
-                }
-                
-                for (i = 0; i < figures.length; i++) {
-                    figures[i].setAttribute("tabindex", "0");
-                    figures[i].addEventListener("click", addLightbox, false);
-                    figures[i].addEventListener("keypress", addLightbox, false);
-                }
-            }
-        </script>
-        
-        <!-- FUNCTION CALLS -->
+        <!-- SINGULAR LIGHTBOXES -->
+        <script src="https://cdn.jsdelivr.net/gh/boscoxvi/tumblr-codes/common/singular-lightboxes.js"></script>
         
         <script>
             var npfOptions = {
-                rowClass:"npf_row",
-                imageContainerClass:"tmblr-full",
-                generatedPhotosetContainerClass:"npf_photoset",
-                imageClass:"npf_image",
                 includeCommonPhotosets: true,
-                useTumblrLightbox: true,
-                insertGalleryIndicator: false,
-                galleryIndicatorClass: "npf_gallery_indicator",
-                galleryIndicatorContent: "",
                 photosetMargins:"4"
             }
             
